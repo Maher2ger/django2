@@ -16,10 +16,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from firstApp import views
-from django.conf.urls import include
+from django.conf.urls import include,url
 
 urlpatterns = [
     path('firstApp/',include('firstApp.urls')),
     path('',views.index,name='indexx'),
     path('admin/', admin.site.urls),
+    url(r'^api/postings/', include('firstApp.api.urls'))
+
 ]

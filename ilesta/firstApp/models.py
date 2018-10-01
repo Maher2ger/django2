@@ -1,4 +1,4 @@
-
+from django.conf import settings
 from django.db import models
 import datetime
 
@@ -24,7 +24,27 @@ class AccessRecord(models.Model):
     def __str__(self):
         return str(self.date)
 
+#########test
 
+
+
+class BlogPost(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    title = models.CharField(max_length=120,null=True,blank=True)
+    content = models.TextField(max_length=120,null=True,blank=True)
+    timestamp = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return str(self.user.username)
+
+
+
+
+
+
+
+
+##########
 """
 class Kurs(models.Model):
     kurs_name = models.CharField(max_length=264,unique=True)
