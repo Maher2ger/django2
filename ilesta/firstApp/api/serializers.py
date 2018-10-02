@@ -12,3 +12,13 @@ class BlogPostSerializer(serializers.ModelSerializer):
             'content',
             'timestamp',
         ]
+
+        read_only_fields = ['user']
+
+
+    def validate_tilte(self,value):
+        qs = BlogPost.objects.filter(title_iexact=value)
+        if self.instance:
+            qs = qs.exclude(pk=self.instance.pk)
+        if qs.exists():
+            raise serializers.ValidationError("This title has already been used")

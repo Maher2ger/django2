@@ -38,6 +38,11 @@ class BlogPost(models.Model):
         return str(self.user.username)
 
 
+    @property
+    def owner(self):
+        return self.user
+
+
 
 
 
